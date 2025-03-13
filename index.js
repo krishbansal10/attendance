@@ -9,8 +9,8 @@ import { dirname } from "path";
 dotenv.config();
 
 const app = express();
-const port = 3000;
-const MONGO_URI = "mongodb://localhost:27017/biometric_attendance";
+const port = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Middleware
@@ -23,8 +23,8 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB Atlas connected successfully!"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Define Student Schema
