@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs") %>
+
+<h2>Attendance Logs</h2>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Roll Number</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% logs.forEach(log => { %>
+    <tr>
+      <td><%= log.student_id ? log.student_id.name : "Unknown Student" %></td>
+      <td><%= log.student_id ? log.student_id.roll_number : "N/A" %></td>
+      <td><%= new Date(log.timestamp).toLocaleString() %></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include("partials/footer.ejs") %>
+
+<style>
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+  .styled-table th,
+  .styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+  }
+  .styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+</style>
