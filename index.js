@@ -58,6 +58,18 @@ app.get("/attendance", async (req, res) => {
   }
 });
 
+
+app.get("/students", async (req, res) => {
+  try {
+    const logs = await Student.find();
+    console.log(logs);
+    res.render("students", { logs });
+  } catch (err) {
+    console.error("Error fetching attendance logs:", err);
+    res.status(500).send("Error fetching logs");
+  }
+});
+
 // API to Register a Student
 app.post("/register", async (req, res) => {
   try {
