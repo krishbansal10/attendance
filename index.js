@@ -116,10 +116,8 @@ app.post("/log-scan", async (req, res) => {
       return res.status(404).json({ message: "Fingerprint not recognized" });
     }
 
-    const istTime = moment().tz("Asia/Kolkata").toDate();
     const attendance = new Attendance({ 
       student_id: student._id,
-      timestamp: istTime,
     });
 
     await attendance.save();
